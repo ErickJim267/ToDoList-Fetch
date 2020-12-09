@@ -6,50 +6,65 @@ import React, { useState } from "react";
 
 //create your first component
 const Home = () => {
-	const [tarea, guardarTarea] = useState("");
-	const [lista, guardarLista] = useState([]);
+	const [task, setTask] = useState("");
+	const [list, setList] = useState([]);
+	const deleteTask = indexTask => {
+		setList(prevState =>
+			prevState.filter((todo, index) => index !== indexTask)
+		);
+	};
 
 	return (
-		<div className="container-fluid col-8">
-			<h1 className="text-center">To Do List!</h1>
-			<div className="Group">
-				<input
-					value={tarea}
-					onKeyDown={e => {
-						if (e.keyCode == 13) {
-							let nuevaLista = [];
-							for (let i = 0; i < lista.length; i++) {
-								nuevaLista.push(lista[i]);
-							}
-							nuevaLista.push(tarea);
-							guardarLista(nuevaLista);
-							guardarTarea("");
+		<div className="container-fluid col-10">
+			<h1 className="text-center">Do you have something to do?</h1>
+
+			<input
+				className="lead col-12"
+				value={task}
+				onKeyDown={e => {
+					if (e.keyCode == 13) {
+						let nuevaLista = [];
+						for (let i = 0; i < list.length; i++) {
+							nuevaLista.push(list[i]);
 						}
-					}}
-					onChange={e => {
-						guardarTarea(e.target.value);
-					}}
-					type="text"
-					placeholder="Ingresa tus tareas aquí"
-				/>
-				<div className="card">
-					<ul className="list-group list-group-flush">
-						{lista.map((cosas, index) => {
-							return (
-								<li
-									key={index}
-									className="list-group-item d-flex justify-content-between">
-									{cosas}
+						nuevaLista.push(task);
+						setList(nuevaLista);
+						setTask("");
+					}
+				}}
+				onChange={e => {
+					setTask(e.target.value);
+				}}
+				type="text"
+				placeholder="Write it here"
+			/>
+			<div className="card">
+				<ul className="list-group list-group-flush">
+					{list.map((cosas, index) => {
+						return (
+							<li
+								className="list-group-item list-group-item-info lead d-flex justify-content-between"
+								key={index}
+								onClick={e => {
+									deleteTask(index);
+								}}>
+								{cosas}
+								<div className="btn btn-danger btn-sm">
 									<i className="fas fa-times" />
-								</li>
-							);
-						})}
-					</ul>
-				</div>
+								</div>
+							</li>
+						);
+					})}
+				</ul>
 			</div>
-			<div className="card-footer text-muted">3 elements</div>
+			<div className="card-footer lead text-muted text-center">
+				{list.length < 1 ? (
+					<p>Nothing to do</p>
+				) : list.length >= 1 ? (
+					<p>Pending Task: {list.length}</p>
+				) : null}
+			</div>
 		</div>
 	);
 };
-
 export default Home;
