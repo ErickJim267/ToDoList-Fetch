@@ -28,7 +28,7 @@ const TodoList = ({ list, deleteTask }) => {
 				{list.length < 1 ? (
 					<p>Nothing to do</p>
 				) : list.length >= 1 ? (
-					<p>Pending Task: {list.length}</p>
+					<p>Pending Chores: {list.length}</p>
 				) : null}
 			</div>
 		</React.Fragment>
