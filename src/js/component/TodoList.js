@@ -15,7 +15,7 @@ const TodoList = ({ list, deleteTask }) => {
 								onClick={e => {
 									deleteTask(index);
 								}}>
-								{task}
+								{task.label}
 								<div className="btn btn-danger btn-sm">
 									<i className="fas fa-times" />
 								</div>
