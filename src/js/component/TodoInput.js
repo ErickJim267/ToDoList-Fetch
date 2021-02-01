@@ -7,7 +7,6 @@ const TodoInput = () => {
 	const BASE_URL = "https://assets.breatheco.de/apis/fake/todos";
 	const [task, setTask] = useState("");
 	const [list, setList] = useState([]);
-	// en la API para eliminar la última tarea se utilizaría DELETE que también borraría el usuario.
 	const deleteTask = indexTask => {
 		setList(prevState =>
 			prevState.filter((chores, index) => index !== indexTask)
