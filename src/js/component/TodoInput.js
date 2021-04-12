@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import TodoList from "./TodoList.js";
 
-// component input
 const TodoInput = () => {
-	// url base de la Api
-	const BASE_URL = "https://assets.breatheco.de/apis/fake/todos";
+	const BASE_URL = "https://assets.breatheco.de/apis/fake/todos/user/Rainfire267";
 	const [task, setTask] = useState("");
 	const [list, setList] = useState([]);
 	const deleteTask = indexTask => {
@@ -14,22 +12,13 @@ const TodoInput = () => {
 	};
 
 	useEffect(() => {
-		// USING ASYNC AWAIT
-		// Por defecto fetch es método GET y es application json
 		const getTasks = async path => {
 			let response = await fetch(url);
 			let APIlist = await response.json();
-			// response.json también devuelve una promesa, toma un tiempo en ejecutarse.
 			setList(APIlist);
 		};
-		let url = `${BASE_URL}/user/mariea`;
+		let url = `${BASE_URL}`;
 		getTasks(url);
-		// USING THEN
-		// el argumento que recibe el segundo then es la respuesta del primero, es decir, response.json
-		// fetch(url)
-		// 	.then(response => response.json())
-		// 	.then(APIlist => setList(APIlist))
-		// 	.catch(error => console.log(`{error}`));
 	}, []);
 
 	return (
@@ -47,38 +36,31 @@ const TodoInput = () => {
 							label: task,
 							done: false
 						});
-						let url = `${BASE_URL}/user/mariea`;
-						// el segundo argumento del FETCH con propiedades de la solicitud.
+						let url = `${BASE_URL}`;
 						let response = await fetch(url, {
-							// POST en la api se utiliza para crear un usuario, para actualizar la lista se utiliza PUT.
 							method: "PUT",
 							body: JSON.stringify(newList),
-							// newList no esta escrito en formato JSON, y la API espera un formato JSON. Para eso
-							// se utiliza JSON.stringify.
 							headers: {
 								"Content-Type": "application/json"
-								// especifica el tipo datos que se van a intercambiar en la solicitud.
 							}
 						});
 						if (response.ok) {
-							// response.ok (boolean) devuelve true y ejecuta la promesa. Si no, devuelve el alert.
 							let response = await fetch(url);
 							let APIlist = await response.json();
 							setList(APIlist);
 							setTask("");
 						} else {
-							alert("something went wrong, do it again!");
+							alert("Try again please");
 						}
 					}
 				}}
-				// cambio de estado donde se almacenan las tareas
 				onChange={e => {
 					setTask(e.target.value);
 				}}
 				type="text"
-				placeholder="Write it here"
+				placeholder="Write your to dos here"
 			/>
-			{/* componente que muestra la lista de Tareas */}
+			{}
 			<TodoList list={list} deleteTask={deleteTask} />
 		</React.Fragment>
 	);
