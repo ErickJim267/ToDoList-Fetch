@@ -1,11 +1,9 @@
 @import "~bootstrap/scss/bootstrap.scss";
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
 body {
     background-color: white;
-    
 }
-
 .contenido{
     background-color: rgb(255, 255, 241);
     width: 60vw;
@@ -13,32 +11,23 @@ body {
     box-shadow: 0px 0px 10px 0px rgb(61, 61, 61);
     margin: auto;
 }
-
 h1{
-    font-family: 'Dancing Script', cursive;
-  
+    //font-family: 'Dancing Script', cursive;
     margin : 50px;
     font-size: 70px;
     font-weight: 400;
-    
 }
-
 .list-group-item{
-    background-color: rgb(255, 255, 241);
-  font-size: 25px; 
-overflow: auto;
-
- 
+    background-color: rgb(255, 248, 241);
+    font-size: 25px; 
+    overflow: auto;
 }
-
 .list-group-item i {
     display: none;
 }
-
 .list-group-item:hover i {
     display: block;
 }
-
 #pie{
     font-size: 15px;
     margin-left: 20px;
@@ -46,13 +35,11 @@ overflow: auto;
     color: gray;
 }
 .form-control{
-    background-color: rgb(255, 255, 241);
+    background-color: rgb(241, 251, 255);
     font-size: 20px; 
     border: 0;
     box-shadow: none; 
-
 }
-
 .fas{
     align-content: end;
     cursor: pointer;
